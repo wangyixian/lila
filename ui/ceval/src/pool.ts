@@ -82,7 +82,7 @@ class ThreadedWasmWorker extends AbstractWorker {
   boot(): Promise<Protocol> {
     this.name = officialStockfish(this.workerOpts.variant) ? 'Stockfish' : 'StockfishMv';
     ThreadedWasmWorker.protocols[this.name] ||= lichess
-      .loadScript(this.url, { sameDomain: true })
+      .loadScript(this.url, { sameDomain: false })
       .then(_ => window[this.name]())
       .then((sf: any) => {
         ThreadedWasmWorker.sf[this.name] = sf;
